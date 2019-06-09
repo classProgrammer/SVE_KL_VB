@@ -134,7 +134,7 @@ public void onMessage (Message message)
 ## Behandlung unbestätigter Nachrichten
   - Zurück in die Queue
   - löschen der Nachricht
-  - Dead Letter Queue
+  - Dead Letter Exchange
   
   
 ## JMS vs. AMQP
