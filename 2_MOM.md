@@ -16,7 +16,7 @@
       - Sender/Receiver do not need to know anything about each other
       - Language independent => Sender C#, Receiver Java etc.
       - New functionality can be added without effect for existing sender
-    - Load Leveling => Queue can store messages when there are more requests than can be processed for a short period of time
+    - Load Leveling => Queue can store messages when too many request occur
     - Load Balancing => scalable, several queues, several producers and consumers
     - Scalable Broker => several Broker instances
     - Availability/Reliability => several instances, load balancing, load leveling, ...
