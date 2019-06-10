@@ -32,3 +32,56 @@
   - HTTP-Header Content-Type => Content Negotiation
   - Austausch via HTTP
   
+## REST Entwurf
+  - Festlegen des Objektmodells
+  - Modellierung der URIs
+  - Definition der Datenformate
+  - Definition der Semeantik der Methoden
+  
+# Advanced Concepts
+  
+## Rest Maturity Model (RMM)  
+   - Level 3: HATEOS
+     - Durch Verfolgen von Links durchwandert der Client verschiedene Zustände der Anwendung
+     - Ressourcen repräsentieren Zustände, Links mögliche Transitionen ("Automat")
+     - PRO: 
+       - Client muss nicht angepasst werden da die Möglichkeiten der Resource mitgeschickt werden (Links)
+       - Server kann einfach neue Funktionalität hinzufügen
+   - Level 2: HTTP-Methoden
+     - GET, POST, UPDATE, ... werden verwendet
+     - Statuscodes werden verwendet
+     - HTTP-Header werden verwendet
+   - Level 1: Ressourcen
+     - mehrere Endpunkte
+     - Resourcen haben ID
+     - Operationen auf Resourcen
+     - Möglichkeiten von HTTP immer noch nicht ausgeschöpft 
+   - Level 0: Remote Procedure Calls 
+     - HTTP wird nur zum Transport verwendet
+     - mit SOAP vergleichbar
+
+## HAL Hypertext Application Language
+  Foramt um links zu realiseiren z.B. HAL+JSON und HAL+XML
+  
+  
+## Rest mit Spring
+  - Domain Class = POJO
+  - @RestController
+  - @RequestMapping(value="/user/{id}", method=RequestMethod.GET)
+  - @GetMapping (value="/employees?start={start}&size={size}"), @PostMapping
+  - @RequestParam => start in "/employees?start={start}&size={size}"
+  - @RequestBody
+  - @PathVariable => id in "/user/{id}"
+  - @ResponseBody
+  - ResponseEntity
+```Java
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public class EmployeeNotFoundException extends RuntimeException{}
+```
+  
+## Content Negotiation
+  - einschränkung der möglichen Typen 
+    - produces=MediaType.APPLICATION_JSON_VALUE
+    - consumes=MediaType.APPLICATION_XML_VALUE
+    
+  
