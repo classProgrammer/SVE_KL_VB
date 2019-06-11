@@ -97,9 +97,9 @@ Funktionalität ist Untermenge von EJB
   public class PersonnelAdminBean implements PersonnelAdminRemote, 
   PersonnelAdminLocal { … }
   
-  // Höhere EJB Version ´: keine Interfaces notwendig
+  // Höhere EJB Version : keine Interfaces notwendig
   @Stateless
-  public class PersonnelAdminBean implements PersonellAdmin { … *
+  public class PersonnelAdminBean implements PersonellAdmin { … }
   
   public class WorkLogBean
     @EJB
@@ -113,6 +113,54 @@ Funktionalität ist Untermenge von EJB
     - Häufig benötigte clientbezogene Daten können serverseitig gespeichert werden.
     - Nachteil: erhöhter Ressourcenbedarf.
     
+ ```Java
+  @Stateful
+  public class EmployeeAdminBean implements EmployeeAdminRemote {
+    @PersistenceContext private EntityManager em;
+    private Employee empl;
+    
+    public void setEmployee (Long emplId) {
+      empl = em.find Employee.class , emplId
+    }
+    
+    public void addLogbookEntry LogbookEntry entry) {
+      empl = em.merge(empl);
+      empl.addLogbookEntry(entry);
+    }
+    
+    @Remove
+    public void close() { }
+  }
+ ```
+
+# Entity
+```Java
+@Entity
+public class Employee implements Serializable {...}
+
+@Remote
+public interface PersonnelAdminRemote {
+  Employee findEmployeeById (Long id);
+  Collection<Employee> findAllEmployees();
+  Long saveOrUpdateEmployee(Employee empl);
+}
+```
+
+## ASYNC
+```Java
+  @Local public interface PersonnelAdminLocal {
+    @Asynchronous
+    public Future<Employee> findEmployeeById (Long id);
+}
+
+
+  @Stateless
+  public class PersonnelAdminBean implements PersonnelAdminLocal {
+    public Future<Employee> findEmployeeById (Long id) {
+      Employee empl = return new AsyncResult<Employee>(empl);
+    }
+  }
+```
     
     
     
