@@ -162,9 +162,39 @@ public interface PersonnelAdminRemote {
   }
 ```
     
+# Was sind Cross-Cutting-Concerns und was kann man dagegen unternehmen?
+  - Transaktionen und Sicherheitsaspekte sind über die gesamte Anwendung verteilt => Cross Cutting Concerns
+  - Ziel ist die Trennung dieser Aspekte von der Geschäftslogik
+  - Der AS fängt die Aufrufe von den Clients ab Interception und führt zusätzlichen Infrastrukturcode aus
+  - Was kann man dagegen unternehmen?
+    - Explizite Transaktionsdefinition
+    - Interceptoren
     
-    ase
-    
+# EJB VS CDI
+  - Lebensdauer
+    - CDI
+      - Scoped => Request, Session, ...
+      - in Context verwaltet
+    - EJB
+      - Zustandslos => lebt in Pool
+      - Zustandsbehaftet => vom Client verwatlet
+   - Injection
+    - CDI
+      - @Inject
+    - EJB
+      - @EJB
+      - kann über Remote Interface angesprochen werden
+      - Methoden werden implizit in Transaktionen durchgeführt
+ 
+# Bean Validation
+  
+# JTA - Java Transaction API
+
+# Concurency Utils
+ 
+# JPA - Java Persistance API
+ 
+      
     
     
     
